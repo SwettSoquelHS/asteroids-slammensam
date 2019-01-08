@@ -1,5 +1,5 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- All objects in this world that move must implemnt the Movalbe interface.
+ All objects in this world that move must implemnt the Movable interface.
  */
 interface Movable {
   /*
@@ -67,7 +67,7 @@ interface Movable {
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
  Abstract base class Mover 
  */
-abstract class Mover {// implements Movable {
+abstract class Mover implements Movable{
 
   protected float x, y;
   protected float speed;
@@ -122,8 +122,28 @@ abstract class Mover {// implements Movable {
     TODO: Part 4: Implement collision detection
    */
   boolean collidingWith(Movable object){
-     return false; 
+    return false; 
+  }
+  float getX(){
+    return x;
+  }
+  float getY(){
+    return y;
+  }
+  float getDirection(){
+    return direction;
+  }
+  float getSpeed(){
+    return speed;
+  }
+  float getRadius(){
+    return radius;
   }
   
-  //TODO: Part I: implement the methods of Moveable interface - delete this comment
+  void setDirection(float newDirectionInDegrees){
+    this.direction = newDirectionInDegrees;
+  }
+  void setSpeed(float newSpeed){
+    this.speed = newSpeed;
+  }
 }
