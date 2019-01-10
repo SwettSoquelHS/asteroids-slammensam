@@ -1,6 +1,11 @@
 /* * * * * * * * * * * * * * * * * * * * * * *
  Class variable declarations here
  */
+float direction;
+float speed;
+float x;
+float y;
+
 Spaceship player1;
 //Asteroid[] asteroids;
 //Star[] starField;
@@ -9,6 +14,7 @@ Spaceship player1;
 /*
   Track User keyboard input
  */
+
 boolean ROTATE_LEFT;  //User is pressing <-
 boolean ROTATE_RIGHT; //User is pressing ->
 boolean MOVE_FORWARD; //User is pressing ^ arrow
@@ -19,12 +25,17 @@ boolean SPACE_BAR;    //User is pressing space bar
   Initialize all of your variables and game state here
  */
 public void setup() {
-  size(640, 400);
+  size(1024, 576);
+  x = width/2;
+  y = height/2;
+  
+  speed = 0;
+  direction = 270;
   
   //initialize your asteroid array and fill it
   
   //initialize ship
-  
+  player1 = new Spaceship(x,y,speed,direction);
   //initialize starfield
 }
 
@@ -52,7 +63,8 @@ public void draw() {
 
   //Update spaceship
   //TODO: Part I
-  
+  player1.update();
+  player1.show();
   //Check for ship collision agaist asteroids
   //TODO: Part II or III
 
