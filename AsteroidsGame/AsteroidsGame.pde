@@ -7,7 +7,7 @@ float x;
 float y;
 
 Spaceship player1;
-//Asteroid[] asteroids;
+Asteroid[] rocks;
 //Star[] starField;
 
 
@@ -26,16 +26,19 @@ boolean SPACE_BAR;    //User is pressing space bar
  */
 public void setup() {
   size(1024, 576);
-  x = width/2;
-  y = height/2;
+  x = width;
+  y = height;
   
-  speed = 0;
+  speed = 2;
   direction = 270;
   
   //initialize your asteroid array and fill it
-  
+  rocks = new Asteroid[9];
+  for(int i = 0; i < rocks.length; i++){
+    rocks[i] = new Asteroid((int)(Math.random() * width),(int)(Math.random() * height),(int)(Math.random() * speed + 1),(int)(Math.random() * direction));
+  }
   //initialize ship
-  player1 = new Spaceship(x,y,speed,direction);
+  player1 = new Spaceship(x/2,y/2,speed,direction);
   //initialize starfield
 }
 
@@ -54,17 +57,29 @@ public void draw() {
   //TODO: Part III or IV - for not just leave this comment
 
   //TODO: Part II, Update each of the Asteroids internals
-
+  
   //Check for asteroid collisions against other asteroids and alter course
   //TODO: Part III, for now keep this comment in place
+  
 
   //Draw asteroids
   //TODO: Part II
-
+  for(int i = 0; i < rocks.length; i++){
+    rocks[i].update();
+    rocks[i].show();
+  }
   //Update spaceship
   //TODO: Part I
   player1.update();
   player1.show();
+  
+  if(ROTATE_LEFT) player1.direction -= 5.0;
+  if(ROTATE_RIGHT) player1.direction += 5.0;
+  if(MOVE_FORWARD){
+    if(player1.speed < 5){
+      player1.speed += 0.5;
+    }
+  }
   //Check for ship collision agaist asteroids
   //TODO: Part II or III
 
@@ -116,5 +131,17 @@ void keyReleased() {
   }
   if (keyCode == 32) {
     SPACE_BAR = false;
+  }
+}
+
+void checkOnAsteroids(){
+  for(int i = 0; i < rocks.length; i++){
+    Asteroid a1 = rocks[i];
+    for(int j = 0; j < rocks.length; j++){
+        Asteroid a2 = rocks[j];
+        if(a1 != a2 && a1.collidingWith(a2)){
+            
+        }
+    }
   }
 }

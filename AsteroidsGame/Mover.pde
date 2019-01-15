@@ -48,7 +48,7 @@ interface Movable {
   void update(); 
 
   /*
-    Display the isntance
+    Display the instance
    */
   void show();
 
@@ -121,8 +121,10 @@ abstract class Mover implements Movable{
   /*
     TODO: Part 4: Implement collision detection
    */
-  boolean collidingWith(Movable object){
-    return false; 
+  boolean collidingWith(Movable m){
+    float distance = dist(x, y, m.getX(), m.getY());
+    boolean touching = distance < radius + m.getRadius();
+    return touching; 
   }
   float getX(){
     return x;
