@@ -58,8 +58,8 @@ interface Movable {
    be able to collide with iteself.
    */
   boolean collidingWith(Movable object);
-}
 //END OF Movable Interface
+}
 
 
 
@@ -94,7 +94,7 @@ abstract class Mover implements Movable{
     this.speed = speed;
     this.direction = direction;
     myColor = 225;
-    radius = 0.0;
+    radius = 15.0;
   }
 
   /*

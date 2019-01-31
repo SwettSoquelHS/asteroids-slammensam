@@ -29,4 +29,20 @@ class Spaceship extends Mover{
     quad(-5,7.5 , -3,24, 5,24 , 13,7.5);
     popMatrix();
   }
+  void update(){
+    x = x + speed*(float)Math.cos(radians(direction));
+    y = y + speed*(float)Math.sin(radians(direction));
+    if(x > width){
+      x = 0;  
+    }
+    if(y > height){
+      y = 0;
+    }
+    if(x < 0){
+      x = width;
+    }
+    if(y < 0){
+      y = height;  
+    }
+  }
 }

@@ -33,7 +33,7 @@ public void setup() {
   direction = 270;
   
   //initialize your asteroid array and fill it
-  rocks = new Asteroid[9];
+  rocks = new Asteroid[10];
   for(int i = 0; i < rocks.length; i++){
     rocks[i] = new Asteroid((int)(Math.random() * width),(int)(Math.random() * height),(int)(Math.random() * speed + 1),(int)(Math.random() * direction));
   }
@@ -50,17 +50,21 @@ public void draw() {
   //your code here
   background(0);
   
+  
   //Draw Starfield first 
   //TODO: Part I
   
   //Check bullet collisions
   //TODO: Part III or IV - for not just leave this comment
-
+  
   //TODO: Part II, Update each of the Asteroids internals
   
   //Check for asteroid collisions against other asteroids and alter course
-  //TODO: Part III, for now keep this comment in place
+   
+   checkOnAsteroids();
+        
   
+  //TODO: Part III, for now keep this comment in place
 
   //Draw asteroids
   //TODO: Part II
@@ -73,8 +77,8 @@ public void draw() {
   player1.update();
   player1.show();
   
-  if(ROTATE_LEFT) player1.direction -= 5.0;
-  if(ROTATE_RIGHT) player1.direction += 5.0;
+  if(ROTATE_LEFT) player1.direction -= 2.5;
+  if(ROTATE_RIGHT) player1.direction += 2.5;
   if(MOVE_FORWARD){
     if(player1.speed < 5){
       player1.speed += 0.5;
@@ -140,7 +144,7 @@ void checkOnAsteroids(){
     for(int j = 0; j < rocks.length; j++){
         Asteroid a2 = rocks[j];
         if(a1 != a2 && a1.collidingWith(a2)){
-            
+           a1.setDirection((float)(Math.random()*180 + 1));
         }
     }
   }

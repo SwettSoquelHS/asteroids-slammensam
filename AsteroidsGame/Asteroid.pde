@@ -11,7 +11,7 @@ class Asteroid extends Mover{
     super(x,y);
   }
   Asteroid(float x, float y, float speed, float direction) {
-    super(x,y,speed,direction);  
+    super(x,y,speed,direction);
   }
   void show(){
     float[] xCoords = {-18,-12,0,6,18,30,10,6,0,-12};
@@ -34,5 +34,21 @@ class Asteroid extends Mover{
     endShape();
     
     popMatrix();
+  }
+  void update(){
+    x = x + speed*(float)Math.cos(radians(direction));
+    y = y + speed*(float)Math.sin(radians(direction));
+    if(x > width){
+      x = 0;  
+    }
+    if(y > height){
+      y = 0;
+    }
+    if(x < 0){
+      x = width;
+    }
+    if(y < 0){
+      y = height;  
+    }
   }
 }
