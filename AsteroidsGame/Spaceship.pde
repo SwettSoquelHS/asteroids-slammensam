@@ -1,3 +1,4 @@
+Bullet myBullet;
   /*
   Spaceship class
     Should extend Mover class and implement show.
@@ -11,6 +12,12 @@ class Spaceship extends Mover{
   Spaceship(float x, float y, float speed, float direction){
     super(x, y, speed, direction);
   }
+  void fire(){
+  if(myBullet != null && !myBullet.isAlive()){
+   myBullet = new Bullet(x,y,speed*1.5 ,direction);
+    }
+  }
+  
   void show(){
     pushMatrix();
     translate(x,y);
@@ -45,4 +52,5 @@ class Spaceship extends Mover{
       y = height;  
     }
   }
+  
 }
