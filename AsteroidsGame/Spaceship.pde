@@ -1,4 +1,3 @@
-Bullet myBullet;
   /*
   Spaceship class
     Should extend Mover class and implement show.
@@ -6,15 +5,18 @@ Bullet myBullet;
     might be useful.
 */
 class Spaceship extends Mover{
+  Bullet myBullet;
   Spaceship(float x, float y){
     super(x,y);
+
   }
   Spaceship(float x, float y, float speed, float direction){
     super(x, y, speed, direction);
+    
   }
   void fire(){
-  if(myBullet != null && !myBullet.isAlive()){
-   myBullet = new Bullet(x,y,speed*1.5 ,direction);
+    if(myBullet != null && !myBullet.isAlive()){
+      myBullet = new Bullet(x,y,speed+15 ,direction);
     }
   }
   
@@ -36,7 +38,13 @@ class Spaceship extends Mover{
     quad(-5,7.5 , -3,24, 5,24 , 13,7.5);
     popMatrix();
   }
-  void update(){
+  void update(){    
+    if(myBullet != null){
+      myBullet.update();
+      myBullet.show();
+    }
+      
+    
     x = x + speed*(float)Math.cos(radians(direction));
     y = y + speed*(float)Math.sin(radians(direction));
     if(x > width){

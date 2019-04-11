@@ -12,19 +12,20 @@ class Bullet extends Mover{
   void show(){
     pushMatrix();
     translate(x,y);
+    fill(255);
     if(live > 0){
-    quad(-5,10 , 5,10 , 5,-10 , -5,-10);
+      quad(-5,10 , 5,10 , 5,-10 , -5,-10);
     }
     popMatrix();
   }
   void update(){
     super.update();
-    //live =- 1;
+    live--;
   }
   boolean isAlive(){
-    if(live <= 0){
-      return false;
+    if(live > 0){
+      return true;
     }
-    return true;
+    return false;
   }
 }
