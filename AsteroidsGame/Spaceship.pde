@@ -6,16 +6,18 @@
  */
 class Spaceship extends Mover {
   Bullet myBullet;
+  ArrayList <Bullet> bullets;
   Spaceship(float x, float y) {
     super(x, y);
   }
   Spaceship(float x, float y, float speed, float direction) {
     super(x, y, speed, direction);
-    ArrayList bullets = new ArrayList(100);
+
+    bullets = new ArrayList <Bullet>(100);
   }
   void fire() {
-    if (myBullet == null || !myBullet.isAlive()) { 
-      myBullet = new Bullet(x, y, speed+10, direction);
+    if (bullets.size() < 10) {
+      bullets.add(new Bullet(x, y, speed+10, direction));
     }
   }
 
@@ -38,13 +40,18 @@ class Spaceship extends Mover {
     quad(-5, 7.5, -3, 24, 5, 24, 13, 7.5);
     popMatrix();
   }
-  void update() {    
-    if (myBullet != null) {
-      myBullet.update();
-      myBullet.show();
-      //print("update bullet");
+  void update() { 
+    //write for loop to update and show each bullet
+    for (Bullet b : bullets) {
+      b.update();
+      b.show();
     }
 
+    //for loop on each bullet and check if still alive
+    for (int i = bullets.size()-1; i>=0; i--) {
+      if () {
+      }
+    }
 
     x = x + speed*(float)Math.cos(radians(direction));
     y = y + speed*(float)Math.sin(radians(direction));
